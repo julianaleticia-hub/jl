@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cartão para Lucas</title>
+
+<style>
+    body{
+        margin:0;
+        font-family: system-ui, Arial;
+        background: linear-gradient(180deg,#030712,#0f172a);
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:#e2e8f0;
+        padding:20px;
+    }
+
+    .card-container{
+        width:320px;
+        height:440px;
+        perspective:1200px;
+    }
+
+    .card{
+        width:100%;
+        height:100%;
+        position:relative;
+        transform-style:preserve-3d;
+        transition:transform 1s;
+        cursor:pointer;
+    }
+
+    .card.is-flipped{
+        transform:rotateY(180deg);
+    }
+
+    .side{
+        position:absolute;
+        width:100%;
+        height:100%;
+        backface-visibility:hidden;
+        background:#111827;
+        border-radius:18px;
+        box-shadow:0 12px 30px rgba(0,0,0,0.45);
+        padding:26px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+    }
+
+    .front{
+        background: linear-gradient(135deg,#1e3a8a,#7c3aed);
+        color:#fff;
+    }
+
+    .front h1{
+        font-size:26px;
+        margin-bottom:18px;
+    }
+
+    .front button{
+        background:#fff;
+        border:0;
+        padding:12px 20px;
+        border-radius:10px;
+        font-size:22px;
+        margin-top:25px;
+        cursor:pointer;
+    }
+
+    .back{
+        transform:rotateY(180deg);
+        overflow:auto;
+    }
+
+    .equation{
+        background:rgba(255,255,255,0.05);
+        padding:12px;
+        border-radius:12px;
+        font-size:17px;
+        line-height:1.5;
+        margin-top:10px;
+        width:100%;
+    }
+
+    .result{
+        margin-top:14px;
+        font-size:20px;
+        font-weight:bold;
+        color:#ef4444;
+    }
+
+    .music-btn{
+        background:#7c3aed;
+        border:0;
+        padding:12px 20px;
+        border-radius:10px;
+        font-size:18px;
+        color:#fff;
+        margin-top:20px;
+        cursor:pointer;
+    }
+</style>
+</head>
+<body>
+
+<div class="card-container">
+    <div class="card" id="card">
+
+        <div class="side front">
+            <h1>Você é especial ❤️</h1>
+            <p style="max-width:240px">Clique para abrir o cartão.</p>
+            <button style="font-size:40px">❤️</button>
+        </div>
+
+        <div class="side back">
+            <div class="equation">
+                <p>Começa-se com:</p>
+                <p>\[
+                    2\left[\frac{(b+ax)-(b-aet)}{mo}\right] = 2a^2
+                \]</p>
+
+                <p>Distribuindo:</p>
+                <p>\[ 2(b+ax)-2(b-aet)=2a^2mo \]</p>
+
+                <p>Simplificando:</p>
+                <p>\[ 2ax + 2aet = 2a^2mo \]</p>
+
+                <p>Fatorando:</p>
+                <p>\[ 2a(x+et)=2a^2mo \]</p>
+
+                <p>Dividindo:</p>
+                <p>\[ x+et = amo \]</p>
+
+                <p>Logo:</p>
+                <p class="result">\[ x = amo - te ❤️ \]</p>
+            </div>
+
+            <a href="https://www.youtube.com/watch?v=fQv-5OuLODE&list=RDfQv-5OuLODE&start_radio=1" target="_blank">
+                <button class="music-btn">Agora clique aqui</button>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    const card = document.getElementById('card');
+    card.addEventListener('click', () => {
+        card.classList.toggle('is-flipped');
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            MathJax.typesetPromise();
+        }
+    });
+
+    const script = document.createElement('script');
+    script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+    script.defer = true;
+    document.head.appendChild(script);
+</script>
+
+</body>
+</html>
